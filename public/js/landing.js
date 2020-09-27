@@ -66,6 +66,7 @@ loadingSpinner()
                 var price = eventData.data[rando].price;
                 var eventId = eventData.data[rando].id;
                 var sellerId = eventData.data[rando].seller_id;
+                
     
                 let eventDetails =
     
@@ -82,7 +83,7 @@ loadingSpinner()
                                 <li class="list-group-item bg-light" id="eventTime">${eventTime}</li>
                             </ul>
                         <div class="card-body ">
-                            <a  href=# id="${sellerId}" class="card-link">BUY</a>
+                            <a  href={../checkout/index.html} id="${sellerId}" class="card-link">BUY</a>
                             <a  href=# id="${eventId}" class="card-link">Save Event</a>
                         </div>
                         </div>
@@ -145,6 +146,7 @@ loadingSpinner()
       console.log(e.target.className);
       let eventId = e.target.id;
       if (e.target.className === "card-link") {
+        window.location.href = "../checkout/index.html";
         alert("You've Added an Item to your Wishlist");
       }
       axios.post('/api/addwish', {
