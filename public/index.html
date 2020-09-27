@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <title>TicketApp</title>
+
+</head>
+
+<body>
+    <!--NAVBAR-->
+
+    <body>
+        <!--NAVBAR-->
+
+        <nav class="navbar sticky-top navbar-light" id="navBar">
+            <a class="navbar-brand" id="brandName">
+                <img src="images/brand.png" width="50" height="30" class="d-inline-block align-top" alt=""
+                    loading="lazy">
+                JUST CONCERTS
+            </a>
+            <div class="nav navbar-right ">
+                <button class="btn btn-outline-light mr-2" id="loginSignUp" type="button" data-toggle="modal"
+                    data-target="#modalLRForm">Login/Sign Up</button>
+                <button type="button" class="btn btn-outline-light">Sell Your Tickets</button>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!--Modal form for Signup/Register-->
+            <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog cascading-modal" role="document">
+                    <!--Content-->
+                    <div class="modal-content">
+
+                        <!--Modal cascading tabs-->
+                        <div class="modal-c-tabs">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i
+                                            class="fas fa-user mr-1"></i>
+                                        Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i
+                                            class="fas fa-user-plus mr-1"></i>
+                                        Register</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panels -->
+                            <div class="tab-content">
+                                <!--Panel 7-->
+                                <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+                                    <!--Body-->
+                                    <div class="modal-body mb-1 modalColor">
+                                        <div class="md-form form-sm">
+                                            <i class="fas fa-envelope prefix"></i>
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-9 col-md-9 col-lg-9 mx-auto">
+                                                        <div class="card card-signin my-3">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title text-center">Sign In</h5>
+                                                                <form class="form-signin">
+                                                                    <div class="form-label-group">
+                                                                        <input type="email" id="inputEmail"
+                                                                            class="form-control"
+                                                                            placeholder="Email address" required
+                                                                            autofocus>
+                                                                        <label for="inputEmail">Email address</label>
+                                                                    </div>
+
+                                                                    <div class="form-label-group">
+                                                                        <input type="password" id="inputPassword"
+                                                                            class="form-control" placeholder="Password"
+                                                                            required>
+                                                                        <label for="inputPassword">Password</label>
+                                                                    </div>
+
+                                                                    <div class="custom-control custom-checkbox mb-3">
+                                                                        <input type="checkbox"
+                                                                            class="custom-control-input"
+                                                                            id="customCheck1">
+                                                                        <label class="custom-control-label"
+                                                                            for="customCheck1">Remember password</label>
+                                                                    </div>
+                                                                    <button
+                                                                        class="btn btn-lg btn-primary btn-block text-uppercase"
+                                                                        type="submit">Sign in</button>
+                                                                    <hr class="my-4">
+                                                                    <button
+                                                                        class="btn btn-lg btn-google btn-block text-uppercase"
+                                                                        type="submit"><i class="fab fa-google mr-2"></i>
+                                                                        Sign in with Google</button>
+                                                                    <button
+                                                                        class="btn btn-lg btn-facebook btn-block text-uppercase"
+                                                                        type="submit"><i
+                                                                            class="fab fa-facebook-f mr-2"></i> Sign in
+                                                                        with Facebook</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer">
+                                        <div class="pl-5">
+                                            <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
+                                            <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                                        </div>
+                                        <button type="button" class="btn btn-outline-primary waves-effect ml-auto"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                                <!--/.Panel 7-->
+
+                                <!--Panel 8-->
+                                <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                                    <!--Body-->
+                                    <div class="modal-body modalColor">
+                                        <div class="md-form form-sm mb-4">
+                                            <i class="fas fa-envelope prefix"></i>
+
+
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-sm-9 col-md-9 col-lg-9 mx-auto">
+                                                        <div class="card card-signin my-5">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title text-center">Sign Up</h5>
+                                                                <form class="form-signin">
+                                                                    <div class="form-label-group">
+                                                                        <input type="email" id="inputEmail"
+                                                                            class="form-control"
+                                                                            placeholder="Email address" required
+                                                                            autofocus>
+                                                                        <label for="inputEmail">Email address</label>
+                                                                    </div>
+
+                                                                    <div class="form-label-group">
+                                                                        <input type="password" id="inputPassword"
+                                                                            class="form-control" placeholder="Password"
+                                                                            required>
+                                                                        <label for="inputPassword">Password</label>
+                                                                    </div>
+
+                                                                    <div class="form-label-group">
+                                                                        <input type="password" id="inputPassword"
+                                                                            class="form-control" placeholder="Password"
+                                                                            required>
+                                                                        <label for="inputPassword">Confirm
+                                                                            Password</label>
+                                                                    </div>
+
+                                                                    <hr class="my-4">
+                                                                    <button
+                                                                        class="btn btn-lg btn-primary btn-block text-uppercase"
+                                                                        type="submit">Create Account</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--Footer-->
+                                    <div class="modal-footer">
+                                        <div class="options text-right">
+                                            <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log
+                                                    In</a></p>
+                                        </div>
+                                        <button type="button" class="btn btn-outline-primary waves-effect ml-auto"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                                <!--/.Panel 8-->
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--/.Content-->
+                </div>
+            </div>
+            <!--Modal form for Signup/Register End-->
+
+
+
+            <!--Start of rows-->
+            <div class="row justify-content-center">
+
+                <div class="col-10 mt-2">
+                    <div class="input-group mb-2 ">
+                        <div class="input-group-prepend">
+                            <input type="text" class="form-control border-dark" id="zipCode" aria-label="Text input"
+                                Placeholder="ZipCode">
+
+                            <select class="custom-select border-dark" id="concertType">
+                                <option value="music">Music Type</option>
+                                <option value="rock">Rock</option>
+                                <option value="hip hop/rap">Hip Hop</option>
+                                <option value="pop">Pop</option>
+                                <option value="country">Country</option>
+                            </select>
+                        </div>
+
+                        <input type="text" class="form-control border-dark" id="concertSearch"
+                            aria-label="Text input with dropdown button" placeholder="Enter a concert">
+                        <button class="btn btn-outline-light " type="button" id="searchConcert">Search</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--Carousel Image Slider-->
+        <div class="row justify-content-center">
+            <div class="col-xl-3"></div>
+            <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block img-fluid border-dark" src="images/concert1.png" alt="Responsive image"
+                            stylealt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block img-fluid border-dark" src="images/concert2.png" alt="Responsive image"
+                            alt="Second slide">
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="col-xl-3"></div>
+        </div>
+        </div>
+
+        </div>
+
+        <!--Div where event cards will render on Main Page-->
+        <div class="row justify-content-center m-1 ml" id="eventsRandom">
+
+
+        </div>
+        </div>
+
+
+       
+
+
+        </div>
+
+
+
+
+ Filbranch
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous">
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+       
+ master
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="ticket.js"></script>
+    </body>
+
+</html>

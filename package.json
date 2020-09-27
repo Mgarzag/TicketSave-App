@@ -1,0 +1,40 @@
+{
+  "name": "ticketsave-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+
+   
+    "start": "nodemon index.js"
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NasiyraM/TicketSave-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NasiyraM/TicketSave-App/issues"
+  },
+  "homepage": "https://github.com/NasiyraM/TicketSave-App#readme",
+  "dependencies": {
+
+    "bcrypt": "^5.0.0",
+    "bluebird": "^3.7.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "pg-promise": "^10.6.1",
+    "sequelize": "^6.3.5"
+  }
+
+    
+  },
+  "devDependencies": {}
+
+}
