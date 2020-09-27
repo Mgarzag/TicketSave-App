@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+    integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+    crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/profile.css">
+
+  <title>User Profile Page</title>
+
+</head>
+<body>
+  <div class="container">
+    <div class="main-body">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../landing/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+        </ol>
+      </nav>
+      <!-- /Breadcrumb -->
+
+      <div class="row gutters-sm">
+        <!---Left side showing user profile--->
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img src="../images/Miles.jpg" alt="Admin" class="rounded"
+                  width="150">
+                <div class="mt-3">
+                  <h4>Miles Morales</h4>
+                  <p class="text-muted font-size-sm">Atlanta, Texas</p>
+                  <button class="btn btn-outline-primary">Message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" id="forSale">
+                <h5 class="mb-0">Tickets for Sale</h5>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" id="wishList">
+                <h5 class="mb-0">Wishlist</h5>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" id="tranHistory">
+                <h5 class="mb-0">Transaction History</h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!---Right side for cards of events-->
+        <div class="col-md-9">
+          <div class="row justify-content-center m-1 ml" id="displayCards"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="../js/profile.js" type="text/javascript"></script>
+
+</body>
+</html>

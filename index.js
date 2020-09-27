@@ -18,10 +18,11 @@ const initOptions = {
 
 // Database connection parameters:
 const config = {
-    host: 'localhost',
+    host: 'ec2-54-211-169-227.compute-1.amazonaws.com',
     port: 5432,
-    database: 'ticketapp',
-    user: 'filmonkesete'
+    database: 'd339h64cgck3tj',
+    user: 'ebtpsuehyjnjuv',
+    password: 'b0f634fafa8c6a315a85ee46487b70da1512ad65203cd8cadd0f78ba131ce3e6'
 };
 
 // Load and initialize pg-promise:
@@ -36,7 +37,7 @@ app.use(session({
     resave: true,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60000
+        maxAge: 360000
     }
 }));
 
@@ -65,36 +66,61 @@ app.get('/api/all', authenticatedMiddleware, (req, res) => {
 
 // add item to events database
 app.post('/api/addevents', (req, res) => {
-    db.query(`INSERT INTO events (event_name, event_date, event_venue, city, state, event_time)
-            VALUES('${req.body.event_name}', '${req.body.eventDate}', '${req.body.eventVenue}', '${req.body.city}', '${req.body.state}', '${req.body.eventTime}')`)
+    db.query(`INSERT INTO events (event_name, seller_id, event_date, event_venue, city, state, event_time, event_image, price)
+            VALUES('${req.body.event_name}', '${req.body.seller_id}', '${req.body.event_date}', '${req.body.event_venue}', '${req.body.city}', '${req.body.state}', '${req.body.event_time}', '${req.body.event_image}', '${req.body.price}')`)
 })
 
 
-
-// add item to wishlist
-app.post('/api/addwish', (req, res) => {
+//add item to wishlist
+app.post('/api/addwish', authenticatedMiddleware, (req, res) => {
     db.query(`INSERT INTO wishlist (profile_id, event_id)
-            VALUES('${req.body.profile_id}', '${req.body.event_id}')`)
+                SELECT '${req.session.user[0].id}', '${req.body.event_id}'
+                FROM events
+                LIMIT 1`)
 })
 
-
-// get wishlist items and return json
-app.get('/api/getwish', (req, res) => {
-    db.query(`SELECT profile.user_name, events.event_name, events.event_date
-            FROM profile
-            JOIN wishlist on profile.id = wishlist.profile_id
-            JOIN events on events.id = wishlist.event_id`)
+// get event details that are randomly posted from home page
+app.get('/api/addevents', (req, res) => {
+    db.query(`SELECT events.id, events.seller_id, events.event_name, events.event_date, events.event_venue, events.city, events.state, events.event_time, events.event_image, events.price
+            FROM events`)
         .then((response) => {
             res.json(response)
         });
 })
 
+// get wishlist items and return json
+app.get('/api/getwish', authenticatedMiddleware, (req, res) => {
+    db.query(`SELECT events.event_name, events.event_date, events.event_venue, events.city, events.state, events.event_time, events.event_image
+                FROM events
+                JOIN wishlist on events.id = wishlist.event_id
+                JOIN profile on wishlist.profile_id = profile.id`)
+        .then((response) => {
+            res.json(response)
+        })
+        .catch((error) => {
+            res.send(error);
+        })
+})
+
+// get user's events for sale
+app.get('/api/myitems', authenticatedMiddleware, (req, res) => {
+    console.log(req.session);
+    db.query(`SELECT * FROM events
+              WHERE seller_id = ${req.session.user[0].id}`)
+        .then((results) => {
+            //console.log(results); 
+            res.json(results);  
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
 
 
 // ---------------- Routes for Authentication ---------------- //
 
 // check if user is already authenticated and has a session
-app.get('/checkuser', authenticatedMiddleware, (req, res) => {
+app.get('/api/checkuser', authenticatedMiddleware, (req, res) => {
     res.send("yah, you good to go");
 })
 
@@ -119,16 +145,13 @@ app.post('/register', (req, res) => {
             //     "hash": passHash
             // })
 
-            db.query(`INSERT INTO profile ("email", "account_password") VALUES('${email}', '${passHash}')`)
-            //for postman testing...can delete
-            // .then((results) => {
-            //     res.json(results);
-            //     console.log(results);
-            // })
+            db.query(`INSERT INTO profile ("account_password", "email") VALUES('${passHash}', '${email}')`)
+               console.log("You've been registered...");
+               //send redirect to main index page
+               res.send('Ok');
+           
         });
-
     }
-
 })
 
 // login for user
@@ -156,18 +179,21 @@ app.post('/login', (req, res) => {
                     // assign results from db.query above to a session
                     req.session.user = results;
                     
-                    console.log(req.session.user)
-                    res.send(req.session.user);
-                    //res.redirect('/path to logged in page') *********** redirects
+                    console.log(req.session.user);
+                    //return res.json(req.session.user);
+                    res.send('Ok');
                 } else {
-                    res.send("Please enter valid crededitals");
-                    //res.redirect('/') ************ redirects
+                    res.send("Invalid Credentials");
                 }
             })
+        })
+        .catch((err) => {
+            console.log(`Error while logging in...${err}`);
         })
 })
 
 // route to log user out
+
 
 
 // ---------------- Functions ---------------- //
@@ -178,10 +204,11 @@ function authenticatedMiddleware(req, res, next) {
     if (req.session.user) {
         next();
     } else { // user is not authenticated send them to login
-        console.log('user not authenticated');
+        console.log('Middleware check...user not authenticated');
         //res.redirect('/login');
     }
 }
+
 
 
 // ---------------- End of Routes ---------------- //
